@@ -21,9 +21,17 @@ form.addEventListener("submit", (event) => {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(emailPassword)
-    }) .then(function(response) {
-        if(response.ok) {
+    }) .then(function(loginOrNot) {
+        if(loginOrNot.ok) {
             console.log("Connecté");
+            //Récupere l'identifiant id_login
+            const idLogin = document.getElementById("id_login");
+
+            //modification de l'html grace à l'identifian id_login
+            idLogin.innerHTML = "Logout";
+
+            //redirection vers index.html
+            document.location.href="file:///home/gumsurf/Travail/Projects%20Web/OpenClassRooms/Tuto.HTML5.CSS3/Formation%20Openclassroom/Project3%20-%20Architecte/Portfolio-architecte-sophie-bluel/FrontEnd/index.html";
         } else {
             console.log("Pas Connecté");
         }
