@@ -21,5 +21,11 @@ form.addEventListener("submit", (event) => {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(emailPassword)
-    });
+    }) .then(function(response) {
+        if(response.ok) {
+            console.log("Connecté");
+        } else {
+            console.log("Pas Connecté");
+        }
+    })
 });
