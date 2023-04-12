@@ -36,7 +36,32 @@ async function editMode() {
 
     titleMesProjects.appendChild(divTitleMesProjects);
     await addModifierText(divTitleMesProjects);
+}
 
+//function déstinée à la création de la modal
+async function createModal() {
+    //initialisation de toutes les balises destiné a la modal
+    const modal = document.querySelector(".modal");
+    const divModal = await createBalise("div", "div_modal");
+    const divButtonTopModal = await createBalise("button", "button_top_modal");
+    const iconButtonTop = await createBalise("i");
+    iconButtonTop.classList.add("fa-solid", "fa-xmark");
+    const titreModal = await createBalise("h2", "titre_modal", "Gallerie photo");
+    const moveIcon = await createBalise("i");
+    moveIcon.classList.add("fa-solid", "fa-up-down-left-right");
+    const deleteIcon = await createBalise("i");
+    deleteIcon.classList.add("fa-solid", "fa-trash-can");
+    const buttonAddPhoto = await createBalise("button", "button_add_photo", "Ajouter une photo");
+    const deleteAllGallery = await createBalise("a", "delete_all_galery", "Supprimer la galerie");
+
+    modal.appendChild(divModal);
+    divModal.appendChild(divButtonTopModal);
+    divButtonTopModal.appendChild(iconButtonTop);
+    divModal.appendChild(titreModal);
+    divModal.appendChild(moveIcon);
+    divModal.appendChild(deleteIcon);
+    divModal.appendChild(buttonAddPhoto);
+    divModal.appendChild(deleteAllGallery);
 }
 
 //function create une balise avec la class donnée en paramétre sinon sans paramétres
@@ -81,6 +106,7 @@ function main() {
     if(loged) {
 
         editMode();
+        createModal();
         console.log("loged");
         console.log("le token index = %s", loged);
     }
