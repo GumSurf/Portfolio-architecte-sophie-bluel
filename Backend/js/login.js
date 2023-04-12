@@ -2,7 +2,6 @@ const form = document.querySelector(".form_login");
 const inputs = document.querySelectorAll("input");
 
 form.addEventListener("submit", (event) => {
-
     // Désactivation du comportement par défaut du navigateur
     event.preventDefault();
 
@@ -17,23 +16,36 @@ form.addEventListener("submit", (event) => {
 
     // Appel de la fonction fetch avec toutes les informations nécessaires
     //**Commentaire à moi même ne pas mettre de s a "api"**
-    fetch("http://localhost:5678/api/users/login", {
+    const myFetch = fetch("http://localhost:5678/api/users/login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(emailPassword)
-    }) .then(function(loginOrNot) {
-        if(loginOrNot.ok) {
+    })
+
+    myFetch.then(function(response) {
+        if(response.ok) {
             console.log("Connecté");
             //Récupere l'identifiant id_login
             const idLogin = document.getElementById("id_login");
-
             //modification de l'html grace à l'identifian id_login
             idLogin.innerHTML = "Logout";
-
+            stockageToken();
             //redirection vers index.html
-            document.location.href="file:///home/gumsurf/Travail/Projects%20Web/OpenClassRooms/Tuto.HTML5.CSS3/Formation%20Openclassroom/Project3%20-%20Architecte/Portfolio-architecte-sophie-bluel/FrontEnd/index.html";
+            document.location.href="file:///home/gumsurf/Travail/Projects%20Web/OpenClassRooms/Tuto.HTML5.CSS3/Formation%20Openclassroom/Portfolio-architecte-sophie-bluel/FrontEnd/index.html";
         } else {
             console.log("Pas Connecté");
         }
-    })
+    });
+
+    function stockageToken() {
+        //obtention du token
+        myFetch.then((resp) => resp.json())
+        .then(function(tokenOrNot) {
+            if(tokenOrNot.token) {
+                //Stockage du token d'identification dans le local
+                window.localStorage.setItem("tokenUser", tokenOrNot.token);
+                console.log("j'ai le token = %s", tokenOrNot.token);
+            }
+        });
+    }
 });
