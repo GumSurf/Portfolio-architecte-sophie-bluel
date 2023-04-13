@@ -117,7 +117,7 @@ async function addPhotoGallery() {
     const formLabelTitre = await createBalise("label", "form_label_titre", "Titre");
     const formInputTitre = await createBalise("input", "form_input_titre");
     const formLabelCategorie = await createBalise("label", "form_label_categorie", "Catégorie");
-    const formInputCategorie = await createBalise("input", "form_input_categorie");
+    const formSelectCategorie = await createBalise("select", "form_select_categorie");
     const divLiseretGris = await createBalise("div", "div_liseret_gris");
     const formButtonValider = await createBalise("button", "form_button_valider", "Valider");
 
@@ -133,9 +133,15 @@ async function addPhotoGallery() {
     await divModalAddPhoto.appendChild(formLabelTitre);
     await divModalAddPhoto.appendChild(formInputTitre);
     await divModalAddPhoto.appendChild(formLabelCategorie);
-    await divModalAddPhoto.appendChild(formInputCategorie);
+    await divModalAddPhoto.appendChild(formSelectCategorie);
     await divModalAddPhoto.appendChild(divLiseretGris);
     await divModalAddPhoto.appendChild(formButtonValider);
+
+    for (let index = 0; index < 9; index++) {
+        const optionSelect = await createBalise("option", "option_select", "name");
+
+        await formSelectCategorie.appendChild(optionSelect);
+    }
 }
 
 //function create une balise avec la class donnée en paramétre sinon sans paramétres
