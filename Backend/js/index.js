@@ -43,22 +43,34 @@ async function createModal() {
     //initialisation de toutes les balises destiné a la modal
     const modal = document.querySelector(".modal");
     const divModal = await createBalise("div", "div_modal");
+    const divPhoto =  await createBalise("div", "div_photo");
     const divButtonTopModal = await createBalise("button", "button_top_modal");
-    const titreModal = await createBalise("h2", "titre_modal", "Gallerie photo");
-    const moveIcon = await createBalise("i");
-    moveIcon.classList.add("fa-solid", "fa-up-down-left-right");
-    const deleteIcon = await createBalise("i");
-    deleteIcon.classList.add("fa-solid", "fa-trash-can");
+    const titreModal = await createBalise("h3", "titre_modal", "Gallerie photo");
+    //const moveIcon = await createBalise("i");
+    //moveIcon.classList.add("fa-solid", "fa-up-down-left-right");
+    const iconButtonTop = await createBalise("i");
+    iconButtonTop.classList.add("fa-solid", "fa-xmark");
+    //const deleteIcon = await createBalise("i");
+    //deleteIcon.classList.add("fa-solid", "fa-trash-can");
     const buttonAddPhoto = await createBalise("button", "button_add_photo", "Ajouter une photo");
     const deleteAllGallery = await createBalise("a", "delete_all_galery", "Supprimer la galerie");
+    const contenuModal = await createBalise("div", "contenu_modal");
+    const divFooterModal = await createBalise("div", "div_footer_modal");
 
-    modal.appendChild(divModal);
-    divModal.appendChild(divButtonTopModal);
+    modal.appendChild(contenuModal);
+    contenuModal.appendChild(divModal);
+    contenuModal.appendChild(divPhoto);
     divModal.appendChild(titreModal);
-    divModal.appendChild(moveIcon);
-    divModal.appendChild(deleteIcon);
-    divModal.appendChild(buttonAddPhoto);
-    divModal.appendChild(deleteAllGallery);
+    //divModal.appendChild(moveIcon);
+    //divModal.before(buttonAddPhoto);
+    //divModal.before(deleteAllGallery);
+    divButtonTopModal.appendChild(iconButtonTop);
+    divModal.appendChild(divButtonTopModal);
+    insertAfter(divFooterModal, contenuModal.lastElementChild);
+    divFooterModal.appendChild(buttonAddPhoto);
+    divFooterModal.appendChild(deleteAllGallery);
+    /*insertAfter(buttonAddPhoto,  contenuModal.lastElementChild);
+    insertAfter(deleteAllGallery,  contenuModal.lastElementChild);*/
 
     printWorksModal();
 }
@@ -67,23 +79,23 @@ async function printWorksModal() {
     myFetch = await fetch("http://localhost:5678/api/works");
     myFetch = await myFetch.json();
 
-    const divModal = document.querySelector(".modal");
-    const iconButtonTop = await createBalise("i");
-    iconButtonTop.classList.add("fa-solid", "fa-xmark");
-
-    await divModal.appendChild(iconButtonTop);
+    const divPhoto = document.querySelector(".div_photo");
 
     for (let i = 0; i < myFetch.length; i++) {
 
         const textEditer = await createBalise("p", "text_editer", "éditer");
         const trashCanIcone = await createBalise("i");
-        trashCanIcone.classList.add("fa-solid", "fa-trash-can");
+        trashCanIcone.classList.add("fa-solid", "fa-trash-can", "fa-2xs");
         const worksModalImage = await createBalise("img");
         worksModalImage.src = myFetch[i].imageUrl;
+        const modalPhoto = await createBalise("div", "modal_photo");
+        const divTrashCan = await createBalise("div", "div_trash_can");
 
-        await divModal.appendChild(trashCanIcone);
-        await divModal.appendChild(worksModalImage);
-        await divModal.appendChild(textEditer);
+        await divPhoto.appendChild(modalPhoto);
+        await modalPhoto.appendChild(divTrashCan);
+        await divTrashCan.appendChild(trashCanIcone);
+        await modalPhoto.appendChild(worksModalImage);
+        await modalPhoto.appendChild(textEditer);
 
         console.log("\n*****SEPARATION*****\n");
         console.log("myFetch = %s", myFetch[i]);
@@ -102,9 +114,11 @@ async function printWorksModal() {
 //function création de la modal pour ajouter des photos
 async function addPhotoGallery() {
     const divModalAddPhoto = document.querySelector(".modal_add_photo");
+    const buttonArrowLeft = await createBalise("button", "button_arrow_left");
     const arrowLeftIcon = await createBalise("i");
     arrowLeftIcon.classList.add("fa-solid", "fa-arrow-left");
     const titleModalAddPhoto = await createBalise("h3", "title_modal_add_photo", "Ajout photo");
+    const buttonTop = await createBalise("button", "button_top");
     const iconButtonTop = await createBalise("i");
     iconButtonTop.classList.add("fa-solid", "fa-xmark");
     const sectionAddPhoto = await createBalise("section", "section_add_photo");
@@ -121,9 +135,11 @@ async function addPhotoGallery() {
     const divLiseretGris = await createBalise("div", "div_liseret_gris");
     const formButtonValider = await createBalise("button", "form_button_valider", "Valider");
 
-    await divModalAddPhoto.appendChild(arrowLeftIcon);
+    await divModalAddPhoto.appendChild(buttonArrowLeft);
+    await buttonArrowLeft.appendChild(arrowLeftIcon);
     await divModalAddPhoto.appendChild(titleModalAddPhoto);
-    await divModalAddPhoto.appendChild(iconButtonTop);
+    await divModalAddPhoto.appendChild(buttonTop);
+    await buttonTop.appendChild(iconButtonTop);
     await divModalAddPhoto.appendChild(sectionAddPhoto);
     await divModalAddPhoto.appendChild(iconPicture);
     await divModalAddPhoto.appendChild(buttonAddPhoto);
@@ -142,6 +158,10 @@ async function addPhotoGallery() {
 
         await formSelectCategorie.appendChild(optionSelect);
     }
+}
+
+function insertAfter(newNode, existingNode) {
+    existingNode.parentNode.insertBefore(newNode, existingNode.nextSibling);
 }
 
 //function create une balise avec la class donnée en paramétre sinon sans paramétres
