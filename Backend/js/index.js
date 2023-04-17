@@ -17,7 +17,6 @@ async function editMode() {
     divModeEdition.appendChild(modeEditionText);
     divBanner.appendChild(modeEditionButton);
     modeEditionButton.appendChild(buttonText);
-    console.log("EDIT-MODE");
 
     //button modifer en-dessous de l'image-principale
     const imagePrincipale = document.querySelector("#introduction > figure");
@@ -101,18 +100,6 @@ async function printWorksModal() {
         await divTrashCan.appendChild(trashCanIcone);
         await modalPhoto.appendChild(worksModalImage);
         await modalPhoto.appendChild(textEditer);
-
-        console.log("\n*****SEPARATION*****\n");
-        console.log("myFetch = %s", myFetch[i]);
-        console.log("myFetch.id = %s", myFetch[i].id);
-        console.log("myFetch.title = %s", myFetch[i].title);
-        console.log("myFetch.imageUrl = %s", myFetch[i].imageUrl);
-        console.log("myFetch.categoryId = %s", myFetch[i].categoryId);
-        console.log("myFetch.userId = %s", myFetch[i].userId);
-        console.log("myFetch.category = %s", myFetch[i].category);
-        console.log("myFetch.category.id = %s", myFetch[i].category.id);
-        console.log("myFetch.category.name = %s", myFetch[i].category.name);
-        console.log("\n*****SEPARATION*****\n");
     }
 }
 
@@ -122,44 +109,79 @@ async function addPhotoGallery() {
     const buttonArrowLeft = await createBalise("button", "button_arrow_left");
     const arrowLeftIcon = await createBalise("i");
     arrowLeftIcon.classList.add("fa-solid", "fa-arrow-left");
-    const titleModalAddPhoto = await createBalise("h3", "title_modal_add_photo", "Ajout photo");
-    const buttonTop = await createBalise("button", "button_top");
+    const titleModalAddPhoto = await createBalise("h3", "title_modal", "Ajout photo");
+    const buttonTopModal = await createBalise("button", "button_top");
     const iconButtonTop = await createBalise("i");
     iconButtonTop.classList.add("fa-solid", "fa-xmark");
-    const sectionAddPhoto = await createBalise("section", "section_add_photo");
+    const divAddPhoto = await createBalise("div", "div_add_photo");
     const iconPicture = await createBalise("i");
-    iconPicture.classList.add("fa-thin", "fa-image");
-    const buttonAddPhoto = await createBalise("button", "button_add_photo", "+ Ajouter photo");
+    iconPicture.classList.add("fa-regular", "fa-image");
+    const buttonAddPhoto = await createBalise("button");
+    buttonAddPhoto.classList.add("button_add_photo", "button_add_photo_modal");
     const textMaxMo = await createBalise("p", "text_max_mo", "jpg.png : 4mo max");
-    const sectionForm = await createBalise("section", "section_form");
+    const divForm = await createBalise("div", "div_form");
     const form = await createBalise("form", "form");
     const formLabelTitre = await createBalise("label", "form_label_titre", "Titre");
     const formInputTitre = await createBalise("input", "form_input_titre");
     const formLabelCategorie = await createBalise("label", "form_label_categorie", "Catégorie");
     const formSelectCategorie = await createBalise("select", "form_select_categorie");
-    const divLiseretGris = await createBalise("div", "div_liseret_gris");
     const formButtonValider = await createBalise("button", "form_button_valider", "Valider");
+    const divTopModalAddPhoto = await createBalise("div", "div_top_add_photo");
+    const divBottomModalAddPhoto = await createBalise("div", "div_bottom_add_photo");
+    const contenuModal = await createBalise("div", "contenu_modal");
+    const divTitle = await createBalise("div", "div_title");
+    const inputImageFile = await createBalise("input", "input_image_file");
+    inputImageFile.setAttribute("type", "file");
+    inputImageFile.setAttribute("accept", ".jpg, .jpeg, .png");
+    inputImageFile.setAttribute = ("hidden");
+    inputImageFile.hidden = true;
+    const labelButtonAddPhoto = await createBalise("label", "label_button_add_photo", "+ Ajouter photo");
+    const divFormLabelTitre = await createBalise("div", "div_form_label_titre");
+    const divFormSelectCategorie = await createBalise("div", "div_form_select_categorie");
+    const outputImage = await createBalise("output", "output_image");
 
-    await divModalAddPhoto.appendChild(buttonArrowLeft);
+    await divModalAddPhoto.appendChild(contenuModal);
+    await contenuModal.appendChild(divTopModalAddPhoto);
+    await divTopModalAddPhoto.appendChild(buttonArrowLeft);
     await buttonArrowLeft.appendChild(arrowLeftIcon);
-    await divModalAddPhoto.appendChild(titleModalAddPhoto);
-    await divModalAddPhoto.appendChild(buttonTop);
-    await buttonTop.appendChild(iconButtonTop);
-    await divModalAddPhoto.appendChild(sectionAddPhoto);
-    await divModalAddPhoto.appendChild(iconPicture);
-    await divModalAddPhoto.appendChild(buttonAddPhoto);
-    await divModalAddPhoto.appendChild(textMaxMo);
-    await divModalAddPhoto.appendChild(sectionForm);
-    await divModalAddPhoto.appendChild(form);
-    await divModalAddPhoto.appendChild(formLabelTitre);
-    await divModalAddPhoto.appendChild(formInputTitre);
-    await divModalAddPhoto.appendChild(formLabelCategorie);
-    await divModalAddPhoto.appendChild(formSelectCategorie);
-    await divModalAddPhoto.appendChild(divLiseretGris);
-    await divModalAddPhoto.appendChild(formButtonValider);
+    await contenuModal.appendChild(divTitle);
+    await divTitle.appendChild(titleModalAddPhoto);
+    await divTopModalAddPhoto.appendChild(buttonTopModal);
+    await buttonTopModal.appendChild(iconButtonTop);
+    await contenuModal.appendChild(divAddPhoto);
+    await divAddPhoto.appendChild(outputImage);
+    await divAddPhoto.appendChild(iconPicture);
+    await divAddPhoto.appendChild(buttonAddPhoto);
+    await buttonAddPhoto.appendChild(labelButtonAddPhoto);
+    await labelButtonAddPhoto.appendChild(inputImageFile);
+    await divAddPhoto.appendChild(textMaxMo);
+    await contenuModal.appendChild(divForm);
+    await divForm.appendChild(form);
+    await form.appendChild(divFormLabelTitre);
+    await divFormLabelTitre.appendChild(formLabelTitre);
+    await divFormLabelTitre.appendChild(formInputTitre);
+    await form.appendChild(divFormSelectCategorie);
+    await divFormSelectCategorie.appendChild(formLabelCategorie);
+    await divFormSelectCategorie.appendChild(formSelectCategorie);
+    await divForm.appendChild(divBottomModalAddPhoto);
+    await divBottomModalAddPhoto.appendChild(formButtonValider);
 
-    for (let index = 0; index < 9; index++) {
-        const optionSelect = await createBalise("option", "option_select", "name");
+    printCategories(formSelectCategorie);
+}
+
+async function printCategories(formSelectCategorie) {
+
+    myFetch = await fetch("http://localhost:5678/api/categories");
+    myFetch = await myFetch.json();
+
+    for (let index = 0; index < myFetch.length; index++) {
+        if(index === 0) {
+            const optionSelectDisabled = await createBalise("option", "option_defaut", "");
+            optionSelectDisabled.setAttribute("value", "disabled");
+            
+            await formSelectCategorie.appendChild(optionSelectDisabled);
+        }
+        const optionSelect = await createBalise("option", "option_select", myFetch[index].name);
 
         await formSelectCategorie.appendChild(optionSelect);
     }
@@ -214,19 +236,96 @@ async function openModal() {
 }
 async function closeModal() {
     const modalGalery = document.querySelector(".modal");
-    console.log("modalGalery = %s", modalGalery);
     const modalAddPhoto = document.querySelector(".modal_add_photo");
     const buttonCloseGalery = document.getElementsByClassName("button_top_modal")[0];
+    const buttonCloseModal = document.getElementsByClassName("button_top")[0];
     const arrowLeft = document.querySelector(".button_arrow_left");
-    const buttonCloseAddPhoto = document.querySelector(".button_top");
 
     window.onclick = function(event) {
-        if(event.target == modalGalery) {
+        if(event.target == modalGalery || event.target == modalAddPhoto) {
             modalGalery.style.display = "none";
+            modalAddPhoto.style.display = "none";
         }
     }
 
     buttonCloseGalery.onclick = function() {
+        modalGalery.style.display = "none";
+        modalAddPhoto.style.display = "none";
+    }
+
+    buttonCloseModal.onclick = function() {
+        modalAddPhoto.style.display = "none";
+        modalGalery.style.display = "none";
+    }
+
+    arrowLeft.onclick = function() {
+        modalAddPhoto.style.display = "none";
+        modalGalery.style.display = "flex";
+    }
+}
+
+function readImage() {
+    const input = document.querySelector("input");
+    const output = document.querySelector("output");
+    const iconeImage = document.getElementsByClassName("fa-image")[0];
+    const buttonAddPhotoModal = document.getElementsByClassName("button_add_photo_modal")[0];
+    const textMaxMo = document.getElementsByClassName("text_max_mo")[0];
+    const divAddPhoto = document.getElementsByClassName("div_add_photo")[0]
+
+    input.addEventListener("change", () => {
+        const file = input.files
+        const divImage = createBalise("div", "div_image");
+        const image = createBalise("img", "image");
+        image.src = URL.createObjectURL(file[0]);
+        image.width = 129;
+        image.height = 193;
+        iconeImage.style.display = "none";
+        buttonAddPhotoModal.style.display = "none";
+        textMaxMo.style.display = "none";
+        divAddPhoto.style.padding = 0;
+
+        output.appendChild(divImage);
+        divImage.appendChild(image);
+    })
+}
+
+function postImage() {
+
+    const input = document.querySelector("input");
+    const select = document.querySelector("select");
+    const inputTitre = document.querySelector(".form_input_titre");
+
+    input.addEventListener("change", () => {
+        callTest();
+    });
+    inputTitre.addEventListener("change", () => {
+        callTest();
+    });
+    select.addEventListener("change", () => {
+        callTest();
+    });
+}
+
+function callTest() {
+    const image = document.querySelector(".image");
+    const title = document.querySelector(".form_input_titre");
+    const categorie = document.querySelector(".form_select_categorie");
+    const button = document.querySelector(".form_button_valider");
+
+    if(image != null && title.value != "" && categorie.value != "disabled") {
+        button.style.background = "#1D6154";
+    } else {
+        button.style.background = "#A7A7A7";
+    }
+}
+
+function activate() {
+    const modalAddPhoto = document.querySelector(".modal_add_photo");
+    const buttonModalAddPhoto = document.getElementsByClassName("button_add_photo")[0];
+    const modalGalery = document.querySelector(".modal");
+
+    buttonModalAddPhoto.onclick = function() {
+        modalAddPhoto.style.display = "flex";
         modalGalery.style.display = "none";
     }
 }
@@ -235,12 +334,14 @@ async function main() {
     //récupération du token
     const loged = window.localStorage.getItem("tokenUser");
     if(loged) {
-
         await editMode();
         await createModal();
         await addPhotoGallery();
         await openModal();
         await closeModal();
+        readImage();
+        postImage();
+        activate();
         console.log("loged");
         console.log("le token index = %s", loged);
     }
