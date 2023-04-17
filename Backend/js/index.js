@@ -5,13 +5,16 @@ async function editMode() {
     const divBanner = await createBalise("div", "div_banner");
     const penToSquareWhite = await createBalise("i");
     penToSquareWhite.classList.add("fa-regular", "fa-pen-to-square", "pen_to_square_white");
-    const modeEditionText = await createBalise("p", undefined, "Mode édition");
-    const modeEditionButton = await createBalise("button");
-    const buttonText = await createBalise("p", undefined, "publier le changements");
+    const modeEditionText = await createBalise("p", "mode_edition_text", "Mode édition");
+    const modeEditionButton = await createBalise("button", "mode_edition_button");
+    const buttonText = await createBalise("p", "button_text", "publier le changements");
+    const divModeEdition = await createBalise("div", "div_mode_edition");
 
     body.before(divBanner);
-    await addModifierText(divBanner);
-    divBanner.appendChild(modeEditionText);
+    //await addModifierText(divBanner);
+    divBanner.appendChild(divModeEdition);
+    divModeEdition.appendChild(penToSquareWhite);
+    divModeEdition.appendChild(modeEditionText);
     divBanner.appendChild(modeEditionButton);
     modeEditionButton.appendChild(buttonText);
     console.log("EDIT-MODE");
@@ -31,11 +34,13 @@ async function editMode() {
     await addModifierText(divArticle);
 
     //button modifier a coté du titre Mes Projets
+    const buttonOpenModal = await createBalise("button", "button_create_modal");
     const titleMesProjects = document.querySelector(".title_mes_projects");
     const divTitleMesProjects = await createBalise("div", "div_title_mes_projects");
 
     titleMesProjects.appendChild(divTitleMesProjects);
-    await addModifierText(divTitleMesProjects);
+    divTitleMesProjects.appendChild(buttonOpenModal);
+    await addModifierText(buttonOpenModal);
 }
 
 //function déstinée à la création de la modal
@@ -199,15 +204,43 @@ async function addModifierText(div) {
         div.appendChild(modifierTxt);
     }
 }
+async function openModal() {
+    const modalGalery = document.getElementsByClassName("modal")[0];
+    const buttonOpenModal = document.getElementsByClassName("button_create_modal")[0];
 
-function main() {
+    buttonOpenModal.onclick = function() {
+        modalGalery.style.display = "flex";
+    }
+}
+async function closeModal() {
+    const modalGalery = document.querySelector(".modal");
+    console.log("modalGalery = %s", modalGalery);
+    const modalAddPhoto = document.querySelector(".modal_add_photo");
+    const buttonCloseGalery = document.getElementsByClassName("button_top_modal")[0];
+    const arrowLeft = document.querySelector(".button_arrow_left");
+    const buttonCloseAddPhoto = document.querySelector(".button_top");
+
+    window.onclick = function(event) {
+        if(event.target == modalGalery) {
+            modalGalery.style.display = "none";
+        }
+    }
+
+    buttonCloseGalery.onclick = function() {
+        modalGalery.style.display = "none";
+    }
+}
+
+async function main() {
     //récupération du token
     const loged = window.localStorage.getItem("tokenUser");
     if(loged) {
 
-        editMode();
-        createModal();
-        addPhotoGallery();
+        await editMode();
+        await createModal();
+        await addPhotoGallery();
+        await openModal();
+        await closeModal();
         console.log("loged");
         console.log("le token index = %s", loged);
     }
