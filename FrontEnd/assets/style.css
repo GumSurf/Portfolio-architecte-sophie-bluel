@@ -248,7 +248,7 @@ footer nav ul {
 {
     display: flex;
     flex-direction: column;
-    /*display: none;*/
+    display: none;
     position: fixed;
     z-index: 1;
     left: 0;
@@ -262,6 +262,7 @@ footer nav ul {
 
 .contenu_modal
 {
+    width: 630px;
     background-color: #fefefe;
     margin: 15% auto;
     padding: 40px;
@@ -284,12 +285,12 @@ footer nav ul {
 {
     /*display: flex;
     align-items: flex-start;*/
-    float: right;
+    /*float: right;
     display: block;
     margin-left: 0px;
     position: relative;
     top: -40px;
-    left: 20px;
+    left: 20px;*/
     background-color: #FFFFFF;
     border-color: #FFFFFF;
     box-shadow: #FFFFFF;
@@ -336,7 +337,7 @@ footer nav ul {
     display: flex;
     flex-direction: column;
     align-items: center;
-    border-top: 3px solid rgb(202, 202, 202);
+    border-top: 3px solid #B3B3B3;
     margin-right: 45px;
     margin-left: 45px;
 }
@@ -356,4 +357,112 @@ footer nav ul {
 .delete_all_galery
 {
     color: red;
+}
+
+/*Modal Add Photo*/
+
+.modal_add_photo
+{
+    display: flex;
+    flex-direction: column;
+    /*display: none;*/
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0,0,0);
+    background-color: rgba(0,0,0,0.4);
+}
+
+.div_top_add_photo
+{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.div_title
+{
+    display: flex;
+    justify-content: center;
+    font-size: large;
+    margin-top: 10px;
+}
+
+.div_add_photo
+{
+    padding: 30px;
+    margin: 30px 60px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #E8F1F6;
+    border-radius: 5px;
+}
+
+.fa-image
+{
+    font-size: 6em;
+    color: #B9C5CC;
+}
+
+.button_add_photo_modal
+{
+    background-color: #CBD6DC;
+    border-color: #FFFFFF;
+    border-width: 0px;
+    margin-bottom: 8px;
+}
+
+.label_button_add_photo
+{
+    padding: 7px 42px;
+    color: #306685;
+}
+
+.div_form
+{
+    margin: 0px 60px;
+}
+
+.div_form_label_titre, .div_form_select_categorie
+{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.form_input_titre, .form_select_categorie
+{
+    height: 50px;
+    border-style: none;
+    background-color: white;
+    box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
+    margin-top: 10px;
+}
+
+.div_bottom_add_photo
+{
+    display: flex;
+    justify-content: center;
+    margin-top: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-top: 1px solid #B3B3B3;
+}
+
+.form_button_valider
+{
+    width: 240px;
+    height: 40px;
+    margin-top: 30px;
+    border-radius: 50px;
+    background-color: #A7A7A7;
+    color: white;
+    border: none;
 }
