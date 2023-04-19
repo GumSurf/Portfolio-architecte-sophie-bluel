@@ -265,7 +265,7 @@ footer nav ul {
     width: 630px;
     background-color: #fefefe;
     margin: 15% auto;
-    padding: 40px;
+    padding: 40px 50px;
     border: 1px solid #888;
     border-radius: 10px;
 }
@@ -274,44 +274,53 @@ footer nav ul {
 {
 }
 
-.titre_modal
-{
-    text-align: center;
-    font-size: large;
-    font-family: 'Work Sans';
-}
-
 .button_top_modal
 {
     /*display: flex;
-    align-items: flex-start;*/
-    /*float: right;
+    align-items: flex-start;
+    float: right;
     display: block;
     margin-left: 0px;
     position: relative;
     top: -40px;
-    left: 20px;*/
+    left: 10px;*/
     background-color: #FFFFFF;
     border-color: #FFFFFF;
-    box-shadow: #FFFFFF;
     border-width: 0px;
+    margin-left: 98%;
+}
+
+.div_title_modal
+{
+    margin-top: 15px;
+    margin-bottom: 45px;
+}
+
+.titre_modal
+{
+    text-align: center;
+    font-size: x-large;
+    font-family: 'Work Sans';
 }
 
 .div_photo
 {
     display: grid;
-    grid-template-columns: repeat(5, 0.1fr);
+    grid-template-columns: repeat(5, 100px);
     grid-gap: 10px;
     grid-auto-rows: minmax(100px, auto);
-    text-align: flex-start;
     justify-content: center;
-    width: 560px
+}
+
+.modal_photo
+{
+    height: 150px;
 }
 
 .modal_photo img
 {
-    width: 85px;
-    height: 115px;
+    height: 134px;
+    width: 100px;
 }  
 
 .div_trash_can
@@ -321,14 +330,35 @@ footer nav ul {
     justify-content: center;
     text-align: center;
     position: relative;
-    top: 20px;
-    left: 65px;
+    bottom: 163px;
+    margin-left: 70%;
+    padding: 3px;
+    border-radius: 2px;
     box-sizing: content-box;
     background-color: black;
     color: #FFFFFF;
     width: 15px;
     height: 15px;
-    margin: 0px;
+}
+
+.div_icone_move
+{
+    display: flex;
+    justify-content: center;
+    position: relative;
+    bottom: 142px;
+    padding: 3px;
+    margin-left: 45%;
+    border-radius: 2px;
+    box-sizing: content-box;
+    background-color: black;
+    color: #FFFFFF;
+    width: 15px;
+    height: 15px;
+}
+
+.icone_move
+{
 }
 
 .div_footer_modal
