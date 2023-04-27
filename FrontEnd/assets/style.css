@@ -119,7 +119,8 @@ li:hover {
 }
 
 #introduction p {
-	margin-bottom: 0.5em;
+	margin-bottom: 2em;
+    font-size: 1em;
 }
 #portfolio h2 {
 	text-align: center;
@@ -134,8 +135,7 @@ li:hover {
 }
 
 .gallery img {
-	width: 100%;
-
+	width: 330px;
 }
 #contact {
 	width: 50%;
@@ -186,7 +186,103 @@ footer nav ul {
 	margin: 2em
 }
 
-/*-----Mon Css-----*/
+
+
+/*-----Page Login-----*/
+
+.button_color_green:hover
+{
+    background-color: #0E2F28;
+}
+
+.nav_bar_header li:hover
+{
+    font-weight: bold;
+    color: black;
+}
+
+main
+{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.titre_login
+{
+    color: #1D6154;
+    padding-bottom: 37px;
+    font-weight: normal;
+    font-size: x-large;
+}
+
+form
+{
+    display: flex;
+    flex-direction: column;
+}
+
+.label_email, .label_password
+{
+    padding-bottom: 7px;
+}
+
+.input_email, .input_password
+{
+    width: 379px;
+    padding-bottom: 15px;
+    padding-top: 15px;
+    padding-left: 10px;
+    border-style: none;
+    box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
+}
+
+.input_email
+{
+    margin-bottom: 30px;
+}
+
+.input_password
+{
+    margin-bottom: 37px;
+}
+
+.button_submit
+{
+    border-radius: 60px;
+    background-color: #1D6154;
+    color: #FFFFFF;
+    font-weight: bold;
+    margin: auto;
+    width: 179px;
+    height: 36px;
+    margin-bottom: 30px;
+}
+
+.message_erreur
+{
+    color: red;
+    font-size: larger;
+}
+
+.lien_mot_de_passe_oublier
+{
+    padding-top: 30px;
+    color: black;
+    margin-bottom: 370px;
+}
+
+/*-----Fin Page Login-----*/
+
+
+
+/*-----Page Index-----*/
+
+#id_login
+{
+    color: black;
+    text-decoration: none;
+}
 
 .div_banner
 {
@@ -220,9 +316,37 @@ footer nav ul {
     border-radius: 50px;
 }
 
+article
+{
+    position: relative;
+    height: 220px;
+}
+
+article p
+{
+    width: 520px;
+}
+
+.div_image_principale, .div_article
+{
+    display: flex;
+    flex-direction: row;
+    font-size: 1.2em;
+}
+
+.div_image_principale
+{
+    margin-top: 15px;
+    margin-left: 55px;
+}
+
+.fa-pen-to-square
+{
+    margin-right: 10px;
+}
+
 .title_mes_projects
 {
-    margin-left: 77px;
     display: flex;
     justify-content: center;
 }
@@ -268,10 +392,6 @@ footer nav ul {
     padding: 40px 50px;
     border: 1px solid #888;
     border-radius: 10px;
-}
-
-.div_modal
-{
 }
 
 .button_top_modal
@@ -357,10 +477,6 @@ footer nav ul {
     height: 15px;
 }
 
-.icone_move
-{
-}
-
 .div_footer_modal
 {
     margin-top: 40px;
@@ -395,7 +511,7 @@ footer nav ul {
 {
     display: flex;
     flex-direction: column;
-    /*display: none;*/
+    display: none;
     position: fixed;
     z-index: 1;
     left: 0;
@@ -495,4 +611,70 @@ footer nav ul {
     background-color: #A7A7A7;
     color: white;
     border: none;
+}
+
+.section_filtres
+{
+    display: flex;
+    justify-content: center;
+}
+
+
+.button_filtre_tous, .button_filtre_objets, .button_filtre_appartements, .button_filtre_hotel_et_restaurant
+{
+    margin-right: 10px;
+    border-radius: 60px;
+    font-family: 'Syne';
+    text-align: center;
+    transition: transform .2s;
+}
+
+.button_filtre_tous
+{
+    border: 2px solid #1D6154;
+    padding: 9px 30px;
+    border-color: #1D6154;
+    background-color: #1D6154;
+    color: white;
+}
+
+.button_filtre_objets, .button_filtre_appartements, .button_filtre_hotel_et_restaurant
+{
+    border: 2px solid #1D6154;
+    border-color: #1D6154;
+    background-color: white;
+    color: #1D6154;
+}
+
+.button_filtre_objets
+{
+    padding: 9px 20px;
+}
+
+.button_filtre_appartements
+{
+    padding: 9px 15px;
+}
+
+.button_filtre_hotel_et_restaurant
+{
+    padding: 9px 11px;
+}
+
+.button_filtre_tous:hover
+{
+    border: 2px solid #1D6154;
+    border-color: #1D6154;
+    background-color: white;
+    color: #1D6154;
+    transform: scale(1.1);
+}
+
+.button_filtre_objets:hover, .button_filtre_appartements:hover, .button_filtre_hotel_et_restaurant:hover
+{
+    border: 2px solid #1D6154;
+    border-color: #1D6154;
+    background-color: #1D6154;
+    color: white;
+    transform: scale(1.1);
 }
