@@ -14,7 +14,7 @@
 <body>
 <header>
 	<h1>Sophie Bluel <span>Architecte d'inteérieur</span></h1>
-	<nav>
+	<nav class="nav_bar_header">
 		<ul>
 			<li>projets</li>
 			<li>contact</li>
@@ -24,19 +24,20 @@
 	</nav>
 </header>
 <main>
-    <h1>Log In</h1>
+    <h1 class="titre_login">Log In</h1>
     <form class="form_login" action="#" method="post">
-        <label for="Email"><b>E-mail</b></label>
-        <input type="text" placeholder="" name="psw" required>
+        <label class="label_email" for="Email"><b>E-mail</b></label>
+        <input class="input_email" type="text" placeholder="" name="psw" required>
 
-        <label for="psw"><b>Password</b></label>
-        <input type="password" placeholder="" name="psw" required>
+        <label class="label_password" for="psw"><b>Password</b></label>
+        <input class="input_password" type="password" placeholder="" name="psw" required>
 
-        <button type="submit">Login</button>
+        <button class="button_submit button_color_green" type="submit">Se connecter</button>
     </form>
-    <a href="#"><p>Mot de passe oublié</p></a>
+    <div class="message_erreur">
+    </div>
+    <a class="lien_mot_de_passe_oublier"href="#"><p>Mot de passe oublié</p></a>
 </main>
-
 <footer>
 	<nav>
 		<ul>
