@@ -559,17 +559,14 @@ function createButtonFilters() {
     }
 
     buttonFiltreObjets.onclick = function () {
-        let un = 1;
         printWorks("1");
     }
 
     buttonFiltreAppartements.onclick = function () {
-        let deux = 2;
         printWorks("2");
     }
 
     buttonFiltreHotelEtRestaurant.onclick = function () {
-        let trois = 3;
         printWorks("3");
     }
 }
