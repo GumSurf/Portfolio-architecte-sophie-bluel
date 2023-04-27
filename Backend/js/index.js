@@ -57,6 +57,7 @@ async function createModal() {
     //const deleteIcon = await createBalise("i");
     //deleteIcon.classList.add("fa-solid", "fa-trash-can");
     const buttonAddPhoto = await createBalise("button", "button_add_photo", "Ajouter une photo");
+    buttonAddPhoto.classList.add("button_color_green");
     const deleteAllGallery = await createBalise("a", "delete_all_galery", "Supprimer la galerie");
     const contenuModal = await createBalise("div", "contenu_modal");
     const divFooterModal = await createBalise("div", "div_footer_modal");
@@ -87,6 +88,18 @@ async function createModal() {
 
 //function pour afficher la galerie
 async function printWorksModal() {
+    const removeModalPhoto = document.querySelector(".modal_photo");
+    while (removeModalPhoto) {
+        console.log("ca boucle");
+        const removeModalPhoto = document.querySelector(".modal_photo");
+        if (removeModalPhoto) {
+            removeModalPhoto.remove();
+        } else {
+            printWorksModal();
+            return;
+        }
+    }
+
     myFetch = await fetch("http://localhost:5678/api/works");
     myFetch = await myFetch.json();
 
@@ -105,7 +118,7 @@ async function printWorksModal() {
         const divIconeMove = createBalise("div", "div_icone_move");
         const iconeMove = createBalise("i", "icone_move");
         iconeMove.classList.add("fa-solid", "fa-up-down-left-right");
-        
+
         buttonTrash.setAttribute("id", myFetch[i].id);
 
         await modalPhoto.appendChild(worksModalImage);
@@ -131,8 +144,55 @@ async function printWorksModal() {
             buttonDeleteOneWork(buttonTrash, modalPhoto);
         }
     }
+}
 
+//function pour afficher la galerie
+async function printWorks(idCategory) {
+    const removePhotoGallery = document.querySelector(".photo_gallery");
+    while (removePhotoGallery) {
+        const removePhotoGallery = document.querySelector(".photo_gallery");
+        if (removePhotoGallery) {
+            removePhotoGallery.remove();
+        } else {
+            printWorks(idCategory);
+            return;
+        }
+    }
+    myFetchWorks = await fetch("http://localhost:5678/api/works");
+    myFetchWorks = await myFetchWorks.json();
 
+    const photoPortfolio = document.getElementsByClassName("gallery")[0];
+
+    if (idCategory) {
+        for (let i = 0; i < myFetchWorks.length; i++) {
+            if (myFetchWorks[i].category.id == idCategory) {
+                const textEditer = await createBalise("p", "text_editer", myFetchWorks[i].title);
+                const worksModalImage = await createBalise("img");
+                worksModalImage.src = myFetchWorks[i].imageUrl;
+                const photoGallery = await createBalise("div", "photo_gallery");
+
+                photoGallery.setAttribute("id", myFetchWorks[i].category.id);
+
+                await photoGallery.appendChild(worksModalImage);
+                await photoGallery.appendChild(textEditer);
+                await photoPortfolio.appendChild(photoGallery);
+            }
+        }
+    } else {
+        for (let i = 0; i < myFetchWorks.length; i++) {
+            const textEditer = await createBalise("p", "text_editer", myFetchWorks[i].title);
+            const worksModalImage = await createBalise("img");
+            worksModalImage.src = myFetchWorks[i].imageUrl;
+            console.log("name[%d] = %s", myFetchWorks[i].category.id, myFetchWorks[i].category.id);
+            const photoGallery = await createBalise("div", "photo_gallery");
+
+            photoGallery.setAttribute("id", myFetchWorks[i].category.id);
+
+            await photoGallery.appendChild(worksModalImage);
+            await photoGallery.appendChild(textEditer);
+            await photoPortfolio.appendChild(photoGallery);
+        }
+    }
 }
 
 //function création de la modal pour ajouter des photos
@@ -407,6 +467,7 @@ function activate() {
                 console.log("Send");
                 resetModalAddPhoto();
                 printWorksModal();
+                printWorks();
             } else {
                 console.log("Not Send");
             }
@@ -422,6 +483,17 @@ function activate() {
         modalPhoto.addEventListener("mouseover", function (event) {
             console.log("hover");
         });
+    }
+    button_logout_press();
+}
+
+function button_logout_press() {
+    const button_logout = document.getElementById("id_login");
+
+    button_logout.onclick = function () {
+        console.log("button logout press");
+        window.localStorage.removeItem("tokenUser");
+        location.replace("index.html");
     }
 }
 
@@ -468,10 +540,51 @@ function resetModalAddPhoto() {
     }
 }
 
+function createButtonFilters() {
+    const buttonFiltreTous = createBalise("button", "button_filtre_tous", "Tous");
+    const buttonFiltreObjets = createBalise("button", "button_filtre_objets", "Objet");
+    const buttonFiltreAppartements = createBalise("button", "button_filtre_appartements", "Appartements");
+    const buttonFiltreHotelEtRestaurant = createBalise("button", "button_filtre_hotel_et_restaurant", "Hôtels & restaurants");
+    const sectionFiltres = createBalise("section", "section_filtres");
+    const divGallery = document.querySelector(".gallery");
+
+    divGallery.before(sectionFiltres);
+    sectionFiltres.appendChild(buttonFiltreTous);
+    sectionFiltres.appendChild(buttonFiltreObjets);
+    sectionFiltres.appendChild(buttonFiltreAppartements);
+    sectionFiltres.appendChild(buttonFiltreHotelEtRestaurant);
+
+    buttonFiltreTous.onclick = function () {
+        printWorks();
+    }
+
+    buttonFiltreObjets.onclick = function () {
+        let un = 1;
+        printWorks("1");
+    }
+
+    buttonFiltreAppartements.onclick = function () {
+        let deux = 2;
+        printWorks("2");
+    }
+
+    buttonFiltreHotelEtRestaurant.onclick = function () {
+        let trois = 3;
+        printWorks("3");
+    }
+}
+
 async function main() {
     //récupération du token
     const loged = window.localStorage.getItem("tokenUser");
+
     if (loged) {
+        const idLogin = document.getElementById("id_login");
+        idLogin.innerHTML = "Logout";
+        idLogin.href = "#";
+    }
+    if (loged) {
+        await printWorks();
         await editMode();
         await createModal();
         await addPhotoGallery();
@@ -482,6 +595,9 @@ async function main() {
         activate();
         console.log("loged");
         console.log("le token index = %s", loged);
+    } else {
+        await printWorks();
+        await createButtonFilters();
     }
 
 }
