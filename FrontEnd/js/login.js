@@ -31,7 +31,7 @@ form.addEventListener("submit", (event) => {
             idLogin.innerHTML = "Logout";
             stockageToken();
             //redirection vers index.html
-            document.location.href = "file:///home/gumsurf/Travail/Projects%20Web/OpenClassRooms/Tuto.HTML5.CSS3/Formation%20Openclassroom/Portfolio-architecte-sophie-bluel/FrontEnd/index.html";
+            document.location.href = 'index.html';
         } else {
             //affichage message d'erreur
             const messageErreur = document.querySelector(".text_message_erreur");
