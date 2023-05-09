@@ -195,6 +195,12 @@ footer nav ul {
     background-color: #0E2F28;
 }
 
+.nav_bar_header a
+{
+    color: black;
+    text-decoration: none;
+}
+
 .nav_bar_header li:hover
 {
     font-weight: bold;
@@ -664,10 +670,6 @@ article p
 
 .button_filtre_tous:hover
 {
-    border: 2px solid #1D6154;
-    border-color: #1D6154;
-    background-color: white;
-    color: #1D6154;
     transform: scale(1.1);
 }
 
