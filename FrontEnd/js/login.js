@@ -12,7 +12,8 @@ form.addEventListener("submit", (event) => {
         email: email,
         password: password
     };
-    console.log("test : %s %s", email, password);
+    console.log("email : %s", email);
+    console.log("password : %s", password);
 
     // Appel de la fonction fetch avec toutes les informations nécessaires
     const myFetch = fetch("http://localhost:5678/api/users/login", {

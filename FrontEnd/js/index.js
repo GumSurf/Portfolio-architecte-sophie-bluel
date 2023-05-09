@@ -50,12 +50,8 @@ async function createModal() {
     const divPhoto = await createBalise("div", "div_photo");
     const buttonTopModal = await createBalise("button", "button_top_modal");
     const titreModal = await createBalise("h3", "titre_modal", "Gallerie photo");
-    //const moveIcon = await createBalise("i");
-    //moveIcon.classList.add("fa-solid", "fa-up-down-left-right");
     const iconButtonTop = await createBalise("i");
     iconButtonTop.classList.add("fa-solid", "fa-xmark");
-    //const deleteIcon = await createBalise("i");
-    //deleteIcon.classList.add("fa-solid", "fa-trash-can");
     const buttonAddPhoto = await createBalise("button", "button_add_photo", "Ajouter une photo");
     buttonAddPhoto.classList.add("button_color_green");
     const deleteAllGallery = await createBalise("a", "delete_all_galery", "Supprimer la galerie");
@@ -73,20 +69,14 @@ async function createModal() {
     buttonTopModal.appendChild(iconButtonTop);
     divModal.appendChild(divTitleModal);
     divTitleModal.appendChild(titreModal);
-    //divModal.appendChild(moveIcon);
-    //divModal.before(buttonAddPhoto);
-    //divModal.before(deleteAllGallery);
-
     insertAfter(divFooterModal, contenuModal.lastElementChild);
     divFooterModal.appendChild(buttonAddPhoto);
     divFooterModal.appendChild(deleteAllGallery);
-    /*insertAfter(buttonAddPhoto,  contenuModal.lastElementChild);
-    insertAfter(deleteAllGallery,  contenuModal.lastElementChild);*/
 
     printWorksModal();
 }
 
-//function pour afficher la galerie
+//function pour afficher la galerie dans la modal
 async function printWorksModal() {
     const removeModalPhoto = document.querySelector(".modal_photo");
     while (removeModalPhoto) {
@@ -100,16 +90,17 @@ async function printWorksModal() {
         }
     }
 
+    //récupérations des works grâce à l'api
     myFetch = await fetch("http://localhost:5678/api/works");
     myFetch = await myFetch.json();
 
     const divPhoto = document.querySelector(".div_photo");
 
     for (let i = 0; i < myFetch.length; i++) {
-
+        //création des balises destinées aux works
         const textEditer = await createBalise("p", "text_editer", "éditer");
         const trashCanIcone = await createBalise("i");
-        trashCanIcone.classList.add("fa-solid", "fa-trash-can");
+        trashCanIcone.classList.add("fa-solid", "fa-trash-can", "fa-xs");
         const buttonTrash = await createBalise("button", "button_trash");
         const worksModalImage = await createBalise("img");
         worksModalImage.src = myFetch[i].imageUrl;
@@ -158,6 +149,7 @@ async function printWorks(idCategory) {
             return;
         }
     }
+    //récupérations des works grâce à l'api
     myFetchWorks = await fetch("http://localhost:5678/api/works");
     myFetchWorks = await myFetchWorks.json();
 
@@ -171,6 +163,7 @@ async function printWorks(idCategory) {
                 worksModalImage.src = myFetchWorks[i].imageUrl;
                 const photoGallery = await createBalise("div", "photo_gallery");
 
+                //définition d'un id utiliser pour les filtres
                 photoGallery.setAttribute("id", myFetchWorks[i].category.id);
 
                 await photoGallery.appendChild(worksModalImage);
@@ -487,6 +480,7 @@ function activate() {
     button_logout_press();
 }
 
+//function pour déconnecté l'utilisateur de la page web
 function button_logout_press() {
     const button_logout = document.getElementById("id_login");
 
@@ -497,6 +491,7 @@ function button_logout_press() {
     }
 }
 
+//function pour supprimer un Work
 function buttonDeleteOneWork(buttonDelete, modalPhoto) {
     modalPhoto.remove();
 
@@ -516,6 +511,7 @@ function buttonDeleteOneWork(buttonDelete, modalPhoto) {
     });
 }
 
+//function pour reset la modal add photo
 function resetModalAddPhoto() {
     const modalAddPhoto = document.querySelector(".modal_add_photo");
     const image = document.querySelector(".input_image_file");
@@ -540,6 +536,7 @@ function resetModalAddPhoto() {
     }
 }
 
+//function qui crée les différents filtres
 function createButtonFilters() {
     const buttonFiltreTous = createBalise("button", "button_filtre_tous", "Tous");
     const buttonFiltreObjets = createBalise("button", "button_filtre_objets", "Objet");
@@ -554,32 +551,40 @@ function createButtonFilters() {
     sectionFiltres.appendChild(buttonFiltreAppartements);
     sectionFiltres.appendChild(buttonFiltreHotelEtRestaurant);
 
+    //si button click afficher tous les works
     buttonFiltreTous.onclick = function () {
         printWorks();
     }
 
+    //si button click afficher tous les Objets
     buttonFiltreObjets.onclick = function () {
         printWorks("1");
     }
 
+    //si button click afficher tous les Appartements
     buttonFiltreAppartements.onclick = function () {
         printWorks("2");
     }
 
+    //si button click afficher tous les Hotels & Restaurants
     buttonFiltreHotelEtRestaurant.onclick = function () {
         printWorks("3");
     }
 }
 
+//la fonction main qui permet d'appeler toutes les fonctions et créer la page
 async function main() {
     //récupération du token
     const loged = window.localStorage.getItem("tokenUser");
 
+    //si possesion du token de login
     if (loged) {
         const idLogin = document.getElementById("id_login");
         idLogin.innerHTML = "Logout";
         idLogin.href = "#";
     }
+
+    //si possesion du token de login
     if (loged) {
         await printWorks();
         await editMode();
@@ -592,6 +597,8 @@ async function main() {
         activate();
         console.log("loged");
         console.log("le token index = %s", loged);
+    
+    //si on ne posséde pas le token de login just afficher les filtres et les works
     } else {
         await printWorks();
         await createButtonFilters();
