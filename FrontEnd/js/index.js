@@ -1,4 +1,3 @@
-//je suis pas vide
 async function editMode() {
     //création de la banniére du mode édition
     const body = document.querySelector("body");
