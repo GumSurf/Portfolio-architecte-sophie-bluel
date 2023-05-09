@@ -369,10 +369,24 @@ function readImage() {
     const textMaxMo = document.getElementsByClassName("text_max_mo")[0];
     const divAddPhoto = document.getElementsByClassName("div_add_photo")[0]
 
+
+
     input.addEventListener("change", () => {
+        //Vérification que l'image ne fais pas plus de 4 Mo
+        if (input.files && input.files[0]) {
+            const file = input.files[0];
+            const maxFileSize = 4194304; // 4 Mo en octets
+            if (file.size > maxFileSize) {
+                alert('Le fichier sélectionné est trop volumineux. Veuillez choisir un fichier de moins de 4 Mo.');
+                input.value = '';
+                return;
+            }
+        }
+
         const file = input.files
         const divImage = createBalise("div", "div_image");
         const image = createBalise("img", "image");
+
         image.src = URL.createObjectURL(file[0]);
         image.width = 129;
         image.height = 193;
@@ -380,7 +394,7 @@ function readImage() {
         buttonAddPhotoModal.style.display = "none";
         textMaxMo.style.display = "none";
         divAddPhoto.style.padding = 0;
-
+        
         output.appendChild(divImage);
         divImage.appendChild(image);
     })
@@ -423,6 +437,7 @@ function activate() {
     const buttonModalAddPhoto = document.getElementsByClassName("button_add_photo")[0];
     const modalGalery = document.querySelector(".modal");
     const formButtonValider = document.querySelector(".form_button_valider");
+    const MAX_IMAGE_SIZE = 4 * 1024 * 1024; // 4 Mo en octets
 
     buttonModalAddPhoto.onclick = function () {
         modalAddPhoto.style.display = "flex";
@@ -434,6 +449,13 @@ function activate() {
         const title = document.querySelector(".form_input_titre");
         var categorie = document.querySelector(".form_select_categorie");
 
+        console.log("image.size = %s", image.fileSize);
+        // Vérification que le fichier est inférieur à 4 Mo
+        if (image.size > MAX_IMAGE_SIZE) {
+            console.log('La taille de l\'image dépasse la limite de 4 Mo');
+            return;
+        }
+
         idNumber = categorie.selectedIndex;
 
         const categorieId = categorie.options[idNumber].id;
@@ -442,6 +464,7 @@ function activate() {
         sendWork.append("image", image.files[0]);
         sendWork.append("title", title.value);
         sendWork.append("category", categorieId);
+
 
         //envoie d'un Work (photo pour la galerie)
         const myFetch = fetch('http://localhost:5678/api/works', {
@@ -571,6 +594,25 @@ function createButtonFilters() {
     }
 }
 
+function hoverFilters() {
+    console.log("hoverFilters Function");
+    const buttonFiltresTous = document.querySelector(".button_filtre_tous");
+    const buttonFiltresAutres = document.querySelectorAll(".button_filtre_objets, .button_filtre_appartements, .button_filtre_hotel_et_restaurant");
+
+    buttonFiltresAutres.forEach(function (buttonFiltresAutres) {
+        buttonFiltresAutres.addEventListener("mouseover", function () {
+            console.log("hover filtres");
+            buttonFiltresTous.style.background = "white";
+            buttonFiltresTous.style.color = "#1D6154";
+        });
+
+        buttonFiltresAutres.addEventListener("mouseout", function () {
+            buttonFiltresTous.style.background = "";
+            buttonFiltresTous.style.color = "";
+        });
+    });
+}
+
 //la fonction main qui permet d'appeler toutes les fonctions et créer la page
 async function main() {
     //récupération du token
@@ -596,11 +638,12 @@ async function main() {
         activate();
         console.log("loged");
         console.log("le token index = %s", loged);
-    
-    //si on ne posséde pas le token de login just afficher les filtres et les works
+
+        //si on ne posséde pas le token de login just afficher les filtres et les works
     } else {
         await printWorks();
         await createButtonFilters();
+        hoverFilters();
     }
 
 }
