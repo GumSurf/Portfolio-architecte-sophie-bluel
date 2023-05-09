@@ -35,7 +35,7 @@ form.addEventListener("submit", (event) => {
         } else {
             //affichage message d'erreur
             const messageErreur = document.querySelector(".text_message_erreur");
-            if(messageErreur) {
+            if (messageErreur) {
                 const textMessageErreur = document.querySelector(".text_message_erreur");
                 textMessageErreur.textContent = "Erreur dans l'identifiant ou le mot de passe";
             } else {
