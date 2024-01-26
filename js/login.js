@@ -16,7 +16,7 @@ form.addEventListener("submit", (event) => {
     console.log("password : %s", password);
 
     // Appel de la fonction fetch avec toutes les informations nécessaires
-    const myFetch = fetch("http://localhost:5678/api/users/login", {
+    const myFetch = fetch("https://sophiebluel-gc-0dee60d1f3ff.herokuapp.com/api/users/login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(emailPassword)
