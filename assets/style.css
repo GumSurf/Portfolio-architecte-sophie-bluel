@@ -1,0 +1,683 @@
+/* http://meyerweb.com/eric/tools/css/reset/
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+/** end reset css**/
+body {
+	max-width: 1140px;
+	margin:auto;
+	font-family: 'Work Sans' ;
+	font-size: 14px;
+}
+header {
+	display: flex;
+	justify-content: space-between;
+	margin: 50px 0
+}
+section {
+	margin: 50px 0
+}
+
+h1{
+	display: flex;
+	flex-direction: column;
+	font-family: 'Syne';
+	font-size: 22px;
+	font-weight: 800;
+	color: #B1663C
+}
+
+h1 > span {
+	font-family: 'Work Sans';
+	font-size:10px;
+	letter-spacing: 0.1em;
+;
+}
+
+h2{
+	font-family: 'Syne';
+	font-weight: 700;
+	font-size: 30px;
+	color: #1D6154
+}
+nav ul {
+	display: flex;
+	align-items: center;
+	list-style-type: none;
+
+}
+nav li {
+	padding: 0 10px;
+	font-size: 1.2em;
+}
+
+li:hover {
+	color: #B1663C;
+}
+#introduction {
+	display: flex;
+	align-items: center;
+}
+#introduction figure {
+	flex: 1
+}
+#introduction img {
+	display: block;
+	margin: auto;
+	width: 80%;
+}
+
+#introduction article {
+	flex: 1
+}
+#introduction h2 {
+	margin-bottom: 1em;
+}
+
+#introduction p {
+	margin-bottom: 2em;
+    font-size: 1em;
+}
+#portfolio h2 {
+	text-align: center;
+	margin-bottom: 1em;
+}
+.gallery {
+	width: 100%;
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr;
+	grid-column-gap: 20px;
+	grid-row-gap: 20px;
+}
+
+.gallery img {
+	width: 330px;
+}
+#contact {
+	width: 50%;
+margin: auto;
+}
+#contact > * {
+	text-align: center;
+
+}
+#contact h2{
+	margin-bottom: 20px;
+}
+#contact form {
+	text-align: left;
+	margin-top:30px;
+	display: flex;
+	flex-direction: column;
+}
+
+#contact input {
+	height: 50px;
+	font-size: 1.2em;
+	border: none;
+	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
+}
+#contact label {
+	margin: 2em 0 1em 0;
+}
+#contact textarea {
+	border: none;
+	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
+}
+
+input[type="submit"]{
+	font-family: 'Syne';
+	font-weight: 700;
+	color: white;
+	background-color: #1D6154;
+	margin : 2em auto ;
+	width: 180px;
+	text-align: center;
+	border-radius: 60px ;
+}
+
+footer nav ul {
+	display: flex;
+	justify-content: flex-end;
+	margin: 2em
+}
+
+
+
+/*-----Page Login-----*/
+
+.button_color_green:hover
+{
+    background-color: #0E2F28;
+}
+
+.nav_bar_header a
+{
+    color: black;
+    text-decoration: none;
+}
+
+.nav_bar_header li:hover
+{
+    font-weight: bold;
+    color: black;
+}
+
+main
+{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.titre_login
+{
+    color: #1D6154;
+    padding-bottom: 37px;
+    font-weight: normal;
+    font-size: x-large;
+}
+
+form
+{
+    display: flex;
+    flex-direction: column;
+}
+
+.label_email, .label_password
+{
+    padding-bottom: 7px;
+}
+
+.input_email, .input_password
+{
+    width: 379px;
+    padding-bottom: 15px;
+    padding-top: 15px;
+    padding-left: 10px;
+    border-style: none;
+    box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
+}
+
+.input_email
+{
+    margin-bottom: 30px;
+}
+
+.input_password
+{
+    margin-bottom: 37px;
+}
+
+.button_submit
+{
+    border-radius: 60px;
+    background-color: #1D6154;
+    color: #FFFFFF;
+    font-weight: bold;
+    margin: auto;
+    width: 179px;
+    height: 36px;
+    margin-bottom: 30px;
+}
+
+.message_erreur
+{
+    color: red;
+    font-size: larger;
+}
+
+.lien_mot_de_passe_oublier
+{
+    padding-top: 30px;
+    color: black;
+    margin-bottom: 370px;
+}
+
+/*-----Fin Page Login-----*/
+
+
+
+/*-----Page Index-----*/
+
+#id_login
+{
+    color: black;
+    text-decoration: none;
+}
+
+.div_banner
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    background-color: black;
+    height: 60px;
+    font-family: 'Sans';
+}
+
+.div_mode_edition
+{
+    display: flex;
+    align-items: center;
+    font-size: small;
+}
+
+.mode_edition_text
+{
+    margin-right: 25px;
+    margin-left: 10px;
+}
+
+.mode_edition_button
+{
+    background-color: white;
+    height: 40px;
+    width: 220px;
+    border-radius: 50px;
+}
+
+article
+{
+    position: relative;
+    height: 220px;
+}
+
+article p
+{
+    width: 520px;
+}
+
+.div_image_principale, .div_article
+{
+    display: flex;
+    flex-direction: row;
+    font-size: 1.2em;
+}
+
+.div_image_principale
+{
+    margin-top: 15px;
+    margin-left: 55px;
+}
+
+.fa-pen-to-square
+{
+    margin-right: 10px;
+}
+
+.title_mes_projects
+{
+    display: flex;
+    justify-content: center;
+}
+
+.div_title_mes_projects
+{
+    display: flex;
+}
+
+.button_create_modal
+{
+    margin-left: 30px;
+    display: flex;
+    align-items: center;
+    background-color: #FFFFFF;
+    border-color: #FFFFFF;
+    box-shadow: #FFFFFF;
+    border-width: 0px;
+    height: 30px;
+}
+
+.modal
+{
+    display: flex;
+    flex-direction: column;
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0,0,0);
+    background-color: rgba(0,0,0,0.4);
+}
+
+.contenu_modal
+{
+    width: 630px;
+    background-color: #fefefe;
+    margin: 15% auto;
+    padding: 40px 50px;
+    border: 1px solid #888;
+    border-radius: 10px;
+}
+
+.button_top_modal
+{
+    background-color: #FFFFFF;
+    border-color: #FFFFFF;
+    border-width: 0px;
+    margin-left: 98%;
+}
+
+.div_title_modal
+{
+    margin-top: 15px;
+    margin-bottom: 45px;
+}
+
+.titre_modal
+{
+    text-align: center;
+    font-size: x-large;
+    font-family: 'Work Sans';
+}
+
+.div_photo
+{
+    display: grid;
+    grid-template-columns: repeat(5, 100px);
+    grid-gap: 10px;
+    grid-auto-rows: minmax(100px, auto);
+    justify-content: center;
+}
+
+.modal_photo
+{
+    height: 150px;
+}
+
+.modal_photo img
+{
+    height: 134px;
+    width: 100px;
+}  
+
+.div_trash_can
+{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    position: relative;
+    bottom: 163px;
+    margin-left: 70%;
+
+}
+
+.button_trash
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 3px;
+    border: none;
+    border-radius: 2px;
+    box-sizing: content-box;
+    background-color: black;
+    color: #FFFFFF;
+    width: 15px;
+    height: 15px;
+}
+
+.div_icone_move
+{
+    display: flex;
+    justify-content: center;
+    position: relative;
+    bottom: 142px;
+    padding: 3px;
+    margin-left: 45%;
+    border-radius: 2px;
+    box-sizing: content-box;
+    background-color: black;
+    color: #FFFFFF;
+    width: 15px;
+    height: 15px;
+}
+
+.div_footer_modal
+{
+    margin-top: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-top: 3px solid #B3B3B3;
+    margin-right: 45px;
+    margin-left: 45px;
+}
+
+.button_add_photo
+{
+    margin-top: 40px;
+    background-color: #1D6154;
+    color: #FFFFFF;
+    width: 240px;
+    height: 35px;
+    border-radius: 50px;
+    font-family: 'Syne';
+    margin-bottom: 30px;
+}
+
+.delete_all_galery
+{
+    color: red;
+}
+
+/*Modal Add Photo*/
+
+.modal_add_photo
+{
+    display: flex;
+    flex-direction: column;
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0,0,0);
+    background-color: rgba(0,0,0,0.4);
+}
+
+.div_top_add_photo
+{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.div_title
+{
+    display: flex;
+    justify-content: center;
+    font-size: large;
+    margin-top: 10px;
+}
+
+.div_add_photo
+{
+    padding: 30px;
+    margin: 30px 60px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #E8F1F6;
+    border-radius: 5px;
+}
+
+.fa-image
+{
+    font-size: 6em;
+    color: #B9C5CC;
+}
+
+.button_add_photo_modal
+{
+    background-color: #CBD6DC;
+    border-color: #FFFFFF;
+    border-width: 0px;
+    margin-bottom: 8px;
+}
+
+.label_button_add_photo
+{
+    padding: 7px 42px;
+    color: #306685;
+}
+
+.div_form
+{
+    margin: 0px 60px;
+}
+
+.div_form_label_titre, .div_form_select_categorie
+{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.form_input_titre, .form_select_categorie
+{
+    height: 50px;
+    border-style: none;
+    background-color: white;
+    box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
+    margin-top: 10px;
+}
+
+.div_bottom_add_photo
+{
+    display: flex;
+    justify-content: center;
+    margin-top: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-top: 1px solid #B3B3B3;
+}
+
+.form_button_valider
+{
+    width: 240px;
+    height: 40px;
+    margin-top: 30px;
+    border-radius: 50px;
+    background-color: #A7A7A7;
+    color: white;
+    border: none;
+}
+
+.section_filtres
+{
+    display: flex;
+    justify-content: center;
+}
+
+
+.button_filtre_tous, .button_filtre_objets, .button_filtre_appartements, .button_filtre_hotel_et_restaurant
+{
+    margin-right: 10px;
+    border-radius: 60px;
+    font-family: 'Syne';
+    text-align: center;
+    transition: transform .2s;
+}
+
+.button_filtre_tous
+{
+    border: 2px solid #1D6154;
+    padding: 9px 30px;
+    border-color: #1D6154;
+    background-color: #1D6154;
+    color: white;
+}
+
+.button_filtre_objets, .button_filtre_appartements, .button_filtre_hotel_et_restaurant
+{
+    border: 2px solid #1D6154;
+    border-color: #1D6154;
+    background-color: white;
+    color: #1D6154;
+}
+
+.button_filtre_objets
+{
+    padding: 9px 20px;
+}
+
+.button_filtre_appartements
+{
+    padding: 9px 15px;
+}
+
+.button_filtre_hotel_et_restaurant
+{
+    padding: 9px 11px;
+}
+
+.button_filtre_tous:hover
+{
+    transform: scale(1.1);
+}
+
+.button_filtre_objets:hover, .button_filtre_appartements:hover, .button_filtre_hotel_et_restaurant:hover
+{
+    border: 2px solid #1D6154;
+    border-color: #1D6154;
+    background-color: #1D6154;
+    color: white;
+    transform: scale(1.1);
+}

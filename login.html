@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+	<meta charset="UTF-8">
+	<title>Sophie Bluel - Architecte d'intérieur</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Work+Sans&display=swap" rel="stylesheet">
+	<meta name="description" content="">
+	<link rel="stylesheet" href="./assets/style.css">
+    <script defer src="js/login.js"></script>
+    <link rel="preload" href="index.html" as="document">
+</head>
+<body>
+<header>
+	<h1>Sophie Bluel <span>Architecte d'inteérieur</span></h1>
+	<nav class="nav_bar_header">
+		<ul>
+			<li ><a href="index.html#projets">projets</a></li>
+			<li ><a href="index.html#contact" class="contact">contact</a></li>
+			<li id="id_login">login</li>
+			<li><img src="./assets/icons/instagram.png" alt="Instagram"></li>
+		</ul>
+	</nav>
+</header>
+<main>
+    <h1 class="titre_login">Log In</h1>
+    <form class="form_login" action="#" method="post">
+        <label class="label_email" for="Email"><b>E-mail</b></label>
+        <input class="input_email" type="text" placeholder="" name="psw" required>
+
+        <label class="label_password" for="psw"><b>Password</b></label>
+        <input class="input_password" type="password" placeholder="" name="psw" required>
+
+        <button class="button_submit button_color_green" type="submit">Se connecter</button>
+    </form>
+    <div class="message_erreur">
+    </div>
+    <a class="lien_mot_de_passe_oublier"href="#"><p>Mot de passe oublié</p></a>
+</main>
+<footer>
+	<nav>
+		<ul>
+			<li>Mentions Légales</li>
+		</ul>
+	</nav>
+</footer>
+</body>
