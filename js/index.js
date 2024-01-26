@@ -160,6 +160,7 @@ async function printWorks(idCategory) {
                 const textEditer = await createBalise("p", "text_editer", myFetchWorks[i].title);
                 const worksModalImage = await createBalise("img");
                 worksModalImage.src = myFetchWorks[i].imageUrl;
+                console.log("imageUrl =", myFetchWorks[i].imageUrl);
                 const photoGallery = await createBalise("div", "photo_gallery");
 
                 //définition d'un id utiliser pour les filtres
