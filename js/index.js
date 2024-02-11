@@ -90,7 +90,7 @@ async function printWorksModal() {
     }
 
     //récupérations des works grâce à l'api
-    myFetch = await fetch("https://sophiebluel-gc-0dee60d1f3ff.herokuapp.com/api/works");
+    myFetch = await fetch("https://sophie-buel-gc.onrender.com/api/works");
     myFetch = await myFetch.json();
 
     const divPhoto = document.querySelector(".div_photo");
@@ -149,7 +149,7 @@ async function printWorks(idCategory) {
         }
     }
     //récupérations des works grâce à l'api
-    myFetchWorks = await fetch("https://sophiebluel-gc-0dee60d1f3ff.herokuapp.com/api/works");
+    myFetchWorks = await fetch("https://sophie-buel-gc.onrender.com/api/works");
     myFetchWorks = await myFetchWorks.json();
 
     const photoPortfolio = document.getElementsByClassName("gallery")[0];
@@ -257,7 +257,7 @@ async function addPhotoGallery() {
 //function pour afficher toutes les differents categorie disponible dans le form de la modal add photo
 async function printCategories(formSelectCategorie) {
 
-    myFetch = await fetch("https://sophiebluel-gc-0dee60d1f3ff.herokuapp.com/api/categories");
+    myFetch = await fetch("https://sophie-buel-gc.onrender.com/api/categories");
     myFetch = await myFetch.json();
 
     for (let index = 0; index < myFetch.length; index++) {
@@ -468,7 +468,7 @@ function activate() {
 
 
         //envoie d'un Work (photo pour la galerie)
-        const myFetch = fetch('https://sophiebluel-gc-0dee60d1f3ff.herokuapp.com/api/works', {
+        const myFetch = fetch('https://sophie-buel-gc.onrender.com/api/works', {
             method: "POST",
             headers:
             {
@@ -521,7 +521,7 @@ function buttonDeleteOneWork(buttonDelete, modalPhoto) {
     const id = buttonDelete.getAttribute("id");
 
     console.log("number = %d", id);
-    fetch(`https://sophiebluel-gc-0dee60d1f3ff.herokuapp.com/api/works/${id}`, {
+    fetch(`https://sophie-buel-gc.onrender.com/api/works/${id}`, {
         method: "DELETE",
         headers: {
             Authorization: `Bearer ${window.localStorage.getItem("tokenUser")}`,
